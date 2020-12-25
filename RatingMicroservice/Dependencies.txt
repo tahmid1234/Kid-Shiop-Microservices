@@ -1,0 +1,7 @@
+curl -sL https://firebase.tools | bash
+firebase login
+firebase init
+npm i express
+npm i cors
+npm install axios
+fuser -k 8080/tcp 
