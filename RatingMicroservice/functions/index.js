@@ -38,7 +38,7 @@ app.post('/rate', (req,res)=>{
             await db.collection('rating').doc('/'+req.body.productId+'/').collection('rated_product').doc('/'+req.body.raterId+'/')
             .create({
                 productId:req.body.productId,
-                rating:1,
+                rating:req.body.rating,
                 raterId:req.body.raterId,
                
             })
@@ -46,14 +46,14 @@ app.post('/rate', (req,res)=>{
         else{
           
             //updating existing rating
-            update_rating(req,rating.rating+1);
+            update_rating(req);
         }
 
         //updating product section
 
         rating_details=await get_rating_details(req)
         console.log(rating_details," Rating")
-        if(rating_details.totalRating>4)
+        if(rating_details.raters>4)
         {
             let averageRating=rating_details.totalRating/rating_details.raters
             axios.put('http://localhost:8080/microserviceproduc/us-central1/app/product/update/ratingDetails/'+req.body.productId,{
@@ -123,7 +123,7 @@ const get_rating= (async (req,rating)=>
 
 
     // update existing rating value
-    const update_rating= (async (req,rating,res)=> 
+    const update_rating= (async (req,res)=> 
     {
         try
         {            
@@ -131,7 +131,7 @@ const get_rating= (async (req,rating)=>
             await document.update
             ({
         
-                rating:rating,    
+                rating:req.body.rating,    
                
          });
            

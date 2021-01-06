@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "microserviceproduc",
+  "private_key_id": "0e4f7c0abc917f229e04965c3cf79684802b8407",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDHpvUIaocnKyIo\nuZ2YCCUrOv1iJcYImR206ZpazX1AlFCYiqHBU+CmhhIzeHavIhQOKGy6jXXU+0Ie\n7ck2lt1QP4p+Sjwr/7cXghwKWJJJVJbusSw+7/4qhxgQCm/FTOBLI31XVaU0TwlG\nx0Bfk4p9iL/dOZm5KwQo6k5CJ1ryhwFPzhtlj6vcn//0PAPWVE6jw7wI4ITR2VKN\nXKqwHxjjpx7DUOzQpPRRODyqTdMv+ph/GVGxhHxNquN9wEfGYSTGOxo+BxPwgauT\nmKnU4GUnVSRwkTNlCJEtOesKXlwiaUqU1kp2ZO3vxT+cO6cMzj4ZHyTiAEWRre7D\nDsg0dnXvAgMBAAECggEAB4KIYVvUdUziOOLxLR39UUN48tSrPs6M91hO0I894Lco\n0vFqr+F4/U/ku7U9IvhRWyOlIgfz1eI/n0yKzuKyNMm3FWoIb7qWMgGtuVaR5hqS\n9NaK7LEiqonbW1sbz4bv7D5LrC8nYDDVj1PWYDdQtHPM4m7qETTaMAnO43PPMCPX\n3VagzoBa7hI2AsW5tSuv0ejP39OdSFMmGcvtzMf3NqfJyTnLbyQ8gvMJ4BVPl1uI\nij2psNvlIAGcQug/aoEyT75j3/zNDrdGeCZLy+uTkBSmuHsqSFXUZ66lj23dXni9\ntrDG6Nb/1ww7Xhrkhsubg1zpnZIdKJnTmnLfaCqdWQKBgQDvK0b1cf0s9GDLh9dK\nVFlWjGkgMrGGgnhucynD3BSMSdFre5NjDn2OcNb5PtfJSFo1fbyBaf7X2sT5fMuQ\n+6g4VMqbH7qwoxmxMa4+q/+croQPGmulyYrLsX1XND8b2O8CsuD0IZxu7fbrP7io\n3IXrMIxoTFvGoxkyPTemg9k/KQKBgQDVs8SpmT5EBC80Ls4UVSn+1M8YdLUDixj8\nGL3s5hmtQ/hxdQbNhnEG3zKjEUSbUy6DDFlpOfGcOHWybS5H6LjxVIOyJ46eyZ/c\n8x45+6YKx3nSFPXBlS35htfHCtl4OcAvZjDq7IwxvXMtkvyrqaX6pERVnz3sVGeK\nsxpReQTnVwKBgQDp+dqXcAaQnhq7wo755n7nzsFhgHZv8t/CneNz+rAXdnfrwJ81\nvw1R9k441CPihGfMANATgxCPNzSQJmg31BqD0V/MVkQbXdRapxGhuj58l7YV2HEL\nZZnlICRQ1YoPwjBA4aJ08xTI6QAwsMwEVoikx3/04Q6/yvtxTLZOrpov0QKBgEqr\nNHUaAWKcn625CPKbyz+qNe5SoQjq6kDzmDEVOTWMQVvLSyQ27Hk9NaE6oGExUFgj\n0X3t7BjstVsxwPEJRM21/Qobvj6HLp9yJ0aVQjAUAOHBxxjruhOs5Oo8RT4314n4\nR/Fd06JxkrQC3txQO5l3GhVcvbM8zqzs5a4//dGjAoGBAJNZZP2NFm25ywQwZRqQ\nZvDIo8UYjqrVcZdUodsok42fuOtKNsq44MkF0x8b341GX5SkrhT5iUntGU4GXtAt\nMXviDHBq28yzaBCjFp8JYG4p/V+tla+1UeZaf+OWzX5IzpqJh2OBYXbBNxuKxyVW\nmm2KoKQDHsarZ8oVLPmknvaC\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ex3r5@microserviceproduc.iam.gserviceaccount.com",
+  "client_id": "106325246451173559201",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ex3r5%40microserviceproduc.iam.gserviceaccount.com"
+}
