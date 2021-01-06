@@ -2,6 +2,8 @@ const functions =require('firebase-functions')
 const admin =require('firebase-admin')
 const fs= require('fs');
 
+const FieldValue= admin.firestore.FieldValue;
+
 var serviceAccount =require("./permission_product.json");
 
 admin.initializeApp({
@@ -15,6 +17,73 @@ const db= admin.firestore()
 const cors= require('cors');
 const { error } = require('firebase-functions/lib/logger');
 app.use(cors ({origin:true}))
+
+
+app.delete('/cart/remove/:item',(req,res)=>{
+    (async ()=>{
+        try{
+
+
+          
+          
+            await deletItem(req.headers["session-id"],req.params.item)
+            return res.status(200).send()
+
+        }
+        catch(error){
+            console.log(error)
+            return res.status(500).send()
+
+        }
+    })()
+    
+})
+
+
+app.delete('/cart/decrease/:item',(req,res)=>{
+    (async ()=>{
+        try{
+
+
+            let itemCount= await checkItem(req.headers["session-id"],req.params.item)
+            console.log(itemCount)
+            await updateItem(req.params.item,itemCount-1,req.headers["session-id"])
+            if(itemCount<1)
+            await deletItem(req.headers["session-id"],req.params.item)
+            return res.status(200).send()
+
+        }
+        catch(error){
+            console.log(error)
+            return res.status(500).send()
+
+        }
+    })()
+    
+})
+
+
+app.get('/cart',( req, res)=>{
+    (async ()=>{
+        try{
+
+            
+            let data=""
+            await db.collection("cart").doc(req.headers["session-id"]).get().then(doc=>{
+
+                data=doc.data()
+                return
+            })
+            return res.status(200).send(data)
+
+        }
+        catch(error){
+
+            return res.status(500).send()
+
+        }
+    })()
+})
 
 app.post('/cart/add/:name', (req,res)=>{
     (async ()=>{
@@ -46,6 +115,7 @@ app.post('/cart/add/:name', (req,res)=>{
     else{
        
         let session_code=await addItem(req.params.name)
+        console.log(session_code," session code")
         return res.writeHead(200, {'session-id': session_code}).send();
 
     }
@@ -78,7 +148,7 @@ catch(err){
 
 
 const checkHeader=(header)=>{
-    
+  
     if(header["session-id"]!=undefined){
         return header["session-id"]
     }
@@ -89,29 +159,10 @@ const checkHeader=(header)=>{
 
 }
 
-const checkSession = (async (fileName)=> {
-    console.log(fileName," filename")
-     let a=200
-     fs.readFile("./sessions/"+fileName+".txt",'utf8', function(err,data){
-       
-        if (err){
-            a=400;
-            console.log
-            console.log(fileName," error")
-           
-            
-            }
-            else{
-                a=200
-                console.log(fileName," not error",a)
-            }
-            
-       
-        console.log(data)
-    } )
-    return a
-})
 
+/*
+    check item
+*/
 const checkItem=(async( sessionId,itemName)=>{
    
     
@@ -134,13 +185,14 @@ const checkItem=(async( sessionId,itemName)=>{
     })
 
     const addItem =(async (itemName)=>{
-        await db.collection("cart").add(
+       
+        return await db.collection("cart").add(
             {
                 [itemName]:1
             }
         ).then(function(docRef){
-            
-            createSession(docRef.id)
+            console.log(docRef.id," docref")
+           
             return docRef.id
         
 
@@ -150,25 +202,14 @@ const checkItem=(async( sessionId,itemName)=>{
 
     })
 
-    const addItemInExistingSession =(async (itemName,sessionId)=>{
-        await db.collection("cart").doc(sessionId).create(
-            {
-                [itemName]:1
-            }
-        )
-
-    })
+   
 
     const updateItem= (async (itemName,itemCount,sessionId) =>{
         console.log(sessionId," ss sessionId ")
         try
         {            
             const document=db.collection('cart').doc('/'+sessionId+'/');
-            await document.get().then(doc=>{
-                if(doc.exists){
-                    console.log("doc",doc.data())
-                }
-            })
+           
             await document.update
             ({
         
@@ -188,9 +229,25 @@ const checkItem=(async( sessionId,itemName)=>{
 
     })
 
+    const deletItem= (sessionId,itemName)=>{
+        (async ()=>{
+
+            try{
+                await db.collection("cart").doc(sessionId).update({
+                    [itemName]:FieldValue.delete()
+                })
+            }
+            catch(error){
+                console.log(error)
+            }
+            
+
+        })()
+    }
+
 
   
     
 
 
-exports.app = functions.https.onRequest(app);
+exports.app = functions.https.onRequest(app)
